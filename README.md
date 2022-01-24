@@ -19,5 +19,6 @@ import * as poly from "polyomino-engine";
 - rotate: rotate the cursor piece, returns false if operation fails
 - spawn: spawns a piece using the available spawn locations, returns false if operation fails
 - verify: verifies if the current board and cursor are valid
+- clear: clears the filled lines and returns an array of line numbers
 
 > Please refer to `src/types` for more information on the internal types or use intellisense.

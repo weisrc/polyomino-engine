@@ -2,6 +2,7 @@
 	"name": "polyomino-engine",
 	"version": "0.0.0",
 	"main": "build/index.js",
+  "description": "Simple game engine for generic polyomino line clearing puzzle games.",
 	"exports": {
 		".": {
 			"import": "./dist/polyomino-engine.es.js",

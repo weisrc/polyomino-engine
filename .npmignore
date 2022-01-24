@@ -1,8 +1,13 @@
+# dir
 coverage
 src
 test
+
+# config
 .gitignore
 jest.config.ts
 tsconfig.json
 vite.config.ts
+
+# locks
 yarn.lock

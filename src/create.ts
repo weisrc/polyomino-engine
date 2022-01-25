@@ -1,6 +1,6 @@
-import { Game, Config } from ".";
+import { Game, GameConfig } from ".";
 
-export function create(config: Config): Game {
+export function create(config: GameConfig): Game {
 	return {
 		...config,
 		angle: 0,

@@ -17,7 +17,7 @@ export interface Piece {
 	kicks: [Kick, Kick, Kick, Kick];
 }
 
-export interface Config {
+export interface GameConfig {
 	size: Vector;
 	spawns: Vector[];
 	pieces: Piece[];
@@ -25,9 +25,19 @@ export interface Config {
 
 export type Matrix = number[][];
 
-export interface Game extends Config {
+export interface Game extends GameConfig {
 	matrix: Matrix;
 	cursor: Vector;
 	angle: Angle;
 	which: number;
+}
+
+export interface EngineConfig {
+	fallInterval: number;
+	// handling
+	repeatTimeout: number; // delayed auto shift
+	repeatInterval: number; // auto repeat rate
+	softDropMultiplier: number; // soft drop fall multiplier
+	repeatCutTimeout: number; // DAS cut delay
+	cancelRepeatOnTurn: boolean; // cancel DAS on direction Change
 }

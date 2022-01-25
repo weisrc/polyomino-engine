@@ -1,5 +1,5 @@
 export default {
 	preset: "ts-jest",
 	testEnvironment: "node",
-	testPathIgnorePatterns: ["<rootDir>/test/fixtures/"],
+	testPathIgnorePatterns: ["<rootDir>/spec/fixtures/"],
 };

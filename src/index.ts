@@ -9,3 +9,4 @@ export * from "./spawn";
 export * from "./types";
 export * from "./verify";
 export * from "./clear";
+export * from "./Engine";

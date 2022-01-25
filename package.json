@@ -11,7 +11,8 @@
 	},
 	"scripts": {
 		"build": "tsc && vite build",
-		"test": "jest"
+		"spec": "jest",
+		"test": "vite dev"
 	},
 	"devDependencies": {
 		"@types/jest": "^27.4.0",

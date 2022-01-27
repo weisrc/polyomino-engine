@@ -3,9 +3,11 @@ import {
 	create,
 	drop,
 	EngineConfig,
+	floating,
 	Game,
 	GameConfig,
 	move,
+	rotate,
 	spawn,
 } from ".";
 
@@ -29,10 +31,13 @@ export class Engine {
 	}
 
 	private fall() {
+		if (!floating(this.game)) {
+			this.hardDrop();
+		}
 		move(this.game, 0, 1);
 	}
 
-	spawn(which: number) {
+	spawn(which: number = Math.floor(Math.random() * this.game.pieces.length)) {
 		return spawn(this.game, which);
 	}
 
@@ -103,6 +108,14 @@ export class Engine {
 		this.clearTimers();
 	}
 
+	rotateLeft() {
+		rotate(this.game, -1);
+	}
+
+	rotateRight() {
+		rotate(this.game, 1);
+	}
+
 	moveLeftRelease() {
 		this.keys.moveLeft = false;
 		this.moveRelease();
@@ -113,7 +126,7 @@ export class Engine {
 	}
 	hardDrop() {
 		drop(this.game);
-		this.spawn(0);
+		this.spawn();
 		clear(this.game);
 		this.clearTimers();
 		if (this.moveX) {

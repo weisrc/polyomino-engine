@@ -1,33 +1,16 @@
 import { Engine } from "../src";
-
-const kick = { left: [{ x: 0, y: 0 }], right: [{ x: 0, y: 0 }] };
+import { I } from "./I";
+import { L } from "./L";
+import { J } from "./J";
+import { O } from "./O";
+import { S } from "./S";
+import { T } from "./T";
+import { Z } from "./Z";
 
 const engine = new Engine(
 	{
 		size: { x: 10, y: 21 },
-		pieces: [
-			{
-				shapes: [
-					[
-						{ x: 0, y: 0 },
-						{ x: 1, y: 0 },
-					],
-					[
-						{ x: 0, y: 0 },
-						{ x: 0, y: 1 },
-					],
-					[
-						{ x: 0, y: 0 },
-						{ x: -1, y: 0 },
-					],
-					[
-						{ x: 0, y: 0 },
-						{ x: 0, y: -1 },
-					],
-				],
-				kicks: [kick, kick, kick, kick],
-			},
-		],
+		pieces: [I, J, L, O, S, T, Z],
 		spawns: [{ x: 5, y: 1 }],
 	},
 	{
@@ -35,20 +18,20 @@ const engine = new Engine(
 		repeatInterval: 0,
 		softDropMultiplier: 1,
 		repeatCutTimeout: 1,
-		fallInterval: 1000,
+		fallInterval: 500,
 		cancelRepeatOnTurn: true,
 	}
 );
 
-engine.spawn(0);
+engine.spawn();
 engine.startFall();
 
-// @ts-ignore
+// @ts-ignoresas a
 window.engine = engine;
 
 const canvas = document.body.appendChild(document.createElement("canvas"));
 canvas.style.border = "1px black solid";
-const SIZE = 25;
+const SIZE = 20;
 canvas.width = SIZE * engine.game.size.x;
 canvas.height = SIZE * engine.game.size.y;
 const ctx = canvas.getContext("2d");
@@ -61,6 +44,12 @@ window.onkeydown = (e) => {
 			break;
 		case "ArrowRight":
 			engine.moveRightPress();
+			break;
+		case "z":
+			engine.rotateLeft();
+			break;
+		case "x":
+			engine.rotateRight();
 			break;
 		case " ":
 			engine.hardDrop();

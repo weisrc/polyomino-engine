@@ -1,4 +1,4 @@
-import { Engine } from "../src";
+import { Engine, predict } from "../src";
 import { I } from "./I";
 import { L } from "./L";
 import { J } from "./J";
@@ -18,15 +18,15 @@ const engine = new Engine(
 		repeatInterval: 0,
 		softDropMultiplier: 1,
 		repeatCutTimeout: 1,
-		fallInterval: 500,
+		fallInterval: 1500,
 		cancelRepeatOnTurn: true,
 	}
 );
 
-engine.spawn();
+engine.spawn(0);
 engine.startFall();
 
-// @ts-ignoresas a
+// @ts-ignore
 window.engine = engine;
 
 const canvas = document.body.appendChild(document.createElement("canvas"));
@@ -45,10 +45,10 @@ window.onkeydown = (e) => {
 		case "ArrowRight":
 			engine.moveRightPress();
 			break;
-		case "z":
+		case "x":
 			engine.rotateLeft();
 			break;
-		case "x":
+		case "z":
 			engine.rotateRight();
 			break;
 		case " ":
@@ -70,18 +70,33 @@ window.onkeyup = (e) => {
 	}
 };
 
+const color = (cell: number, s = 100) =>
+	`hsl(${(cell / engine.game.pieces.length) * 360}, ${s}%, 50%)`;
+
 function render() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	for (let y = 0; y < engine.game.size.y; y++) {
 		for (let x = 0; x < engine.game.size.x; x++) {
-			if (engine.game.matrix[y][x] >= 0) {
+			const cell = engine.game.matrix[y][x];
+			if (cell >= 0) {
+				ctx.fillStyle = color(cell);
 				ctx.fillRect(x * SIZE, y * SIZE, SIZE, SIZE);
 			}
 		}
 	}
+	const py = predict(engine.game);
 	for (let { x, y } of engine.game.pieces[engine.game.which].shapes[
 		engine.game.angle
 	]) {
+		ctx.fillStyle = color(engine.game.which, 10);
+
+		ctx.fillRect(
+			(x + engine.game.cursor.x) * SIZE,
+			(y + py) * SIZE,
+			SIZE,
+			SIZE
+		);
+		ctx.fillStyle = color(engine.game.which);
 		ctx.fillRect(
 			(x + engine.game.cursor.x) * SIZE,
 			(y + engine.game.cursor.y) * SIZE,

@@ -1,4 +1,5 @@
 import { Piece } from "../src";
+import { JLTSZKicks } from "./JLTSZKicks";
 
 export const L: Piece = {
 	shapes: [
@@ -27,10 +28,5 @@ export const L: Piece = {
 			{ x: -1, y: -1 },
 		],
 	],
-	kicks: [
-		{ left: [{ x: 0, y: 0 }], right: [{ x: 0, y: 0 }] },
-		{ left: [{ x: 0, y: 0 }], right: [{ x: 0, y: 0 }] },
-		{ left: [{ x: 0, y: 0 }], right: [{ x: 0, y: 0 }] },
-		{ left: [{ x: 0, y: 0 }], right: [{ x: 0, y: 0 }] },
-	],
+	kicks: JLTSZKicks
 };

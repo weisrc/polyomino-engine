@@ -49,6 +49,7 @@ window.onkeydown = (e) => {
 			engine.rotateLeft();
 			break;
 		case "z":
+		case "ArrowUp":
 			engine.rotateRight();
 			break;
 		case " ":

@@ -12,7 +12,8 @@
 	"scripts": {
 		"build": "tsc && vite build",
 		"spec": "jest",
-		"test": "vite dev"
+		"test": "vite dev",
+		"docs": "vite build --config vite.build.config.ts"
 	},
 	"devDependencies": {
 		"@types/jest": "^27.4.0",

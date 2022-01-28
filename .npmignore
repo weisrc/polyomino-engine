@@ -3,11 +3,13 @@ coverage
 src
 test
 spec
+docs
 
 # config
 .gitignore
 jest.config.ts
 tsconfig.json
+vite.build.config.ts
 vite.config.ts
 index.html
 
